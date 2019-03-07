@@ -64,7 +64,9 @@ from Core import *
 # Tokens.set('Test')
 # print(Tokens.UniDAX_APIKEY)
 uds.Set('Test')
-t = Trading.get_all_order('btcusdt')
+t = Trading.get_all_order('gntusdt')
 #pprint(t)
-Trading.cancel('btcusdt', t)
+Trading.cancel('gntusdt', t)
 #uds.cancel_order('btcusdt', 70861)
+
+t = uds.create_order('ethbtc',price= 5.124, volume= 20.5, side= 'SELL')

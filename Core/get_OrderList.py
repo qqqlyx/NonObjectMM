@@ -88,4 +88,6 @@ def Run(coinParam):
         else:
             order['vol'] = _new_vol
 
+        print('* %s%s' %(_pp, _new_price))
+
     return OrdeList
