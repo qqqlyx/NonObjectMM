@@ -137,7 +137,7 @@ def get_final_price_atan(price_up, price_low, price):
 #     t = math.atan((i - 500) / 12.5)
 #     list2.append(t)
 # df = pd.Series(list1)
-# df.to_excel('D:\\Robin\\UniDAX_NSMM\\Setting\\Test\\test.xlsx')
+# df.to_excel('D:\\Robin\\UniDAX_NonObjectMM\\Setting\\Test\\test.xlsx')
 # df = pd.Series(list2)
-# df.to_excel('D:\\Robin\\UniDAX_NSMM\\Setting\\Test\\test2.xlsx')
+# df.to_excel('D:\\Robin\\UniDAX_NonObjectMM\\Setting\\Test\\test2.xlsx')
 

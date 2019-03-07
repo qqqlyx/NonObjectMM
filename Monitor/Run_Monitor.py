@@ -15,7 +15,7 @@ _code = sys.argv[1]
 _envo = sys.argv[2]
 _data = sys.argv[3]
 
-path = 'D:\\Robin\\UniDAX_NSMM\\Core\\Run.py'
+path = 'D:\\Robin\\UniDAX_NonObjectMM\\Core\\Run.py'
 
 
 class run_action():

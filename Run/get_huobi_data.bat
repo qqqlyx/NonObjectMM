@@ -1,2 +1,2 @@
-python D:\Robin\UniDAX_NSMM\Monitor\KlineData_Monitor.py
+python D:\Robin\UniDAX_NonObjectMM\Monitor\KlineData_Monitor.py
 pause

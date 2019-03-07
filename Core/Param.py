@@ -13,13 +13,13 @@ def Run(_c, _e):
     # 各参数
     PARMA = {}
     # 读取环境参数
-    df = pd.read_excel('D:\\Robin\\UniDAX_NSMM\\Setting\\CoinParam.xlsx')
+    df = pd.read_excel('D:\\Robin\\UniDAX_NonObjectMM\\Setting\\CoinParam.xlsx')
     #pprint(_envo)
     # 读取交易参数
     for i in range(df.shape[0]):
         if df.loc[i, 'Coin'] == _c or df.loc[i, 'Envo'] == _e:
             # 读取txt
-            path = 'D:\\Robin\\UniDAX_NSMM\\Setting\\%s\\%s.txt' % ( _e, _c)
+            path = 'D:\\Robin\\UniDAX_NonObjectMM\\Setting\\%s\\%s.txt' % ( _e, _c)
             if not os.path.exists(path):
                 w = open(path,'w')
                 w.write('LastPrice=0\nLastVol=0\nBasePrice=0\nBaseVol=0')

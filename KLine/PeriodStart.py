@@ -1,6 +1,6 @@
 
 import sys
-sys.path.append('D:\\Robin\\UniDAX_NSMM')
+sys.path.append('D:\\Robin\\UniDAX_NonObjectMM')
 
 import datetime
 from Api.Huobi import HuobiServices as hbs
@@ -9,7 +9,7 @@ import time
 
 # 获取数据
 # 读取环境参数
-df = pd.read_excel('D:\\Robin\\UniDAX_NSMM\\Setting\\CoinParam.xlsx')
+df = pd.read_excel('D:\\Robin\\UniDAX_NonObjectMM\\Setting\\CoinParam.xlsx')
 CoinList = set(list(df.loc[:,'Coin']))
 
 
@@ -35,7 +35,7 @@ while True:
             new_df = new_df.loc[new_df['id'] <= run_Stamp]
 
             lastday = (datetime.datetime.now() + datetime.timedelta(days=-1)).strftime("%Y%m%d")
-            path = 'D:\\Robin\\UniDAX_NSMM\\HistoryData\\%s\\%s.xlsx' %(lastday, coin)
+            path = 'D:\\Robin\\UniDAX_NonObjectMM\\HistoryData\\%s\\%s.xlsx' %(lastday, coin)
             new_df.to_excel(path)
 
         # 重置坐标

@@ -13,7 +13,7 @@
 # DATA = 'RealTime'  # Kline
 
 import sys
-sys.path.append('D:\\Robin\\UniDAX_NSMM')
+sys.path.append('D:\\Robin\\UniDAX_NonObjectMM')
 _input_param = str(sys.argv[1]).split(',')
 COIN = _input_param[0]
 ENVO = _input_param[1]
@@ -91,7 +91,7 @@ while True:
         # 记录交易参数
         _e = CoinPARAM['Envo']
         _c = CoinPARAM['Coin']
-        path = 'D:\\Robin\\UniDAX_NSMM\\Setting\\%s\\%s.txt' % (_e, _c)
+        path = 'D:\\Robin\\UniDAX_NonObjectMM\\Setting\\%s\\%s.txt' % (_e, _c)
 
         lp = str(CoinPARAM['Trading']['LastPrice'])
         lv = str(CoinPARAM['Trading']['LastVol'])
