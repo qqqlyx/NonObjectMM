@@ -17,7 +17,7 @@ def Run(_c, _e):
     #pprint(_envo)
     # 读取交易参数
     for i in range(df.shape[0]):
-        if df.loc[i, 'Coin'] == _c or df.loc[i, 'Envo'] == _e:
+        if df.loc[i, 'Coin'] == _c and df.loc[i, 'Envo'] == _e:
             # 读取txt
             path = 'D:\\Robin\\UniDAX_NonObjectMM\\Setting\\%s\\%s.txt' % ( _e, _c)
             if not os.path.exists(path):
