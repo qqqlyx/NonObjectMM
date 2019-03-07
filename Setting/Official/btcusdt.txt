@@ -1,0 +1,4 @@
+LastPrice=0
+LastVol=0
+BasePrice=0
+BaseVol=0
