@@ -14,10 +14,13 @@ def Run(coinParam):
     _envo = coinParam['Envo']
 
     # 自成交报单
+    # 加个随机波动吧
     OrdeList = []
-    temp = {'price': _tp, 'vol': _tv, 'dict': 'BUY', 'envo':_envo}
+    r = random.randint(-3,3)
+    orderprice = _tp + r * _pt
+    temp = {'price': orderprice, 'vol': _tv, 'dict': 'BUY', 'envo':_envo}
     OrdeList.append(temp)
-    temp = {'price': _tp, 'vol': _tv, 'dict': 'SELL', 'envo':_envo}
+    temp = {'price': orderprice, 'vol': _tv, 'dict': 'SELL', 'envo':_envo}
     OrdeList.append(temp)
 
     # 深度报单
@@ -88,6 +91,5 @@ def Run(coinParam):
         else:
             order['vol'] = _new_vol
 
-        print('* %s%s' %(_pp, _new_price))
 
     return OrdeList
