@@ -110,19 +110,22 @@ def Run(coinParam):
 def get_final_price_atan(price_up, price_low, price):
     meanprice = (price_up + price_low) / 2
     spread = price_up - meanprice
-    price_spread = price - meanprice
+    price_spread = abs(price - meanprice)
 
     # 对于反正切函数来说,当x=1时, y=0.7853,大约是极限的1/2
     # y 的极限是 pi/2
     x_ratio = 1 / (spread / 2) # x倍数
-    y_ratio = spread / (math.pi / 2) # y倍数
+    y_ratio = price_spread / (math.pi / 2) # y倍数
 
-    # 此处希望实现，当price_spread = 1/4 spread时，x=1
+    # 此处希望实现，当price_spread = 1/2 spread时，x=1
     x = price_spread * x_ratio
     y = math.atan(x)
 
     # 再计算回原始价差
-    final_spread = y * y_ratio
+    if price < meanprice:
+        final_spread = -abs(y * y_ratio)
+    else:
+        final_spread = abs(y * y_ratio)
 
     # 最终价格
     final_price = final_spread + meanprice
