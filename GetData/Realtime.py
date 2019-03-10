@@ -85,6 +85,7 @@ def Run(coinParam):
         result = {'LastPrice': _lastPrice, 'LastVol': _lastVol, 'BasePrice': _newBase, 'BaseVol': _newBaseVol}
     else:
         # 计算涨跌幅度
+        print('*****')
         _ratioP = (_newBase - _basePrice) / _basePrice
         _ratioV = (_newBaseVol - _baseVol) / _baseVol
         #print('2* %s%s' % (_ratioP, _ratioV))
