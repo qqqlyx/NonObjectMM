@@ -14,17 +14,16 @@ def do_order(code, price, vol, direction):
 
         # 打印log
         if re['msg'] != 'suc':
-            pass
-            print('%s CODE=%s  D=%s  P=%s  V=%s' % (re, code, direction, price, vol))
+            #print('%s CODE=%s  D=%s  P=%s  V=%s' % (re, code, direction, price, vol))
             result = '000'
+
         else:
             # log.info(re)
-            pass
             result = re['data']['order_id']
 
     except Exception as e:
         pass
-        print('---->except<do_trading>: ' + str(code), e)
+        # print('---->except<do_trading>: ' + str(code), e)
 
     return result
 
@@ -40,8 +39,8 @@ def cancel(code, all_order):
             # 打印log
             if re['msg'] != 'suc':
                 pass
-                print('(cancel_all): code: ' + code)
-                print(re)
+                # print('(cancel_all): code: ' + code)
+                # print(re)
             # else:
             #     log.info(re)
 
