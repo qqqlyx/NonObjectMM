@@ -81,22 +81,22 @@ def Run(coinParam):
     '''
     if _basePrice <= 0 or _baseVol <= 0:
         # 返回结果
-        print('*')
+        #print('*')
         result = {'LastPrice': _lastPrice, 'LastVol': _lastVol, 'BasePrice': _newBase, 'BaseVol': _newBaseVol}
     else:
         # 计算涨跌幅度
         _ratioP = (_newBase - _basePrice) / _basePrice
         _ratioV = (_newBaseVol - _baseVol) / _baseVol
         #print('2* %s%s' % (_ratioP, _ratioV))
-        print('base_ratio=%s' % (_ratioP * 100))
+        #print('base_ratio=%s' % (_ratioP * 100))
 
         # 根据价格范围 调整价格涨跌
         # 使用反正切函数控制
         NewPrice = _lastPrice * (1 + _ratioP)
-        print('price=%s' % (NewPrice))
+        #print('price=%s' % (NewPrice))
 
         NewPrice = get_final_price_atan(_priceUp, _priceLow, NewPrice)
-        print('after_price=%s' % (NewPrice))
+        #print('after_price=%s' % (NewPrice))
 
         NewVol = _lastVol * (1 + _ratioV)
 
@@ -119,18 +119,16 @@ def get_final_price_atan(price_up, price_low, price):
     spread = price_up - meanprice
     price_spread = abs(price - meanprice)
 
-    print('price_spread=%s' %(price_spread))
+    #print('price_spread=%s' %(price_spread))
 
     # 对于反正切函数来说,当x=1时, y=0.7853,大约是极限的1/2
-    # y 的极限是 pi/2
+    # y 的极限是 pi / 2
     x_ratio = 1 / (spread / 2) # x倍数
-    y_ratio = spread / math.pi # y倍数
+    y_ratio = spread / (math.pi / 2) # y倍数
 
     # 此处希望实现，当price_spread = 1/2 spread时，x=1
     x = price_spread * x_ratio
     y = math.atan(x)
-
-    print('x=%s , y=%s' % (x, y))
 
     # 再计算回原始价差
     if price < meanprice:
@@ -138,7 +136,7 @@ def get_final_price_atan(price_up, price_low, price):
     else:
         final_spread = abs(y * y_ratio)
 
-    print('final_spread=%s' % (final_spread))
+    # print('final_spread=%s' % (final_spread))
 
     # 最终价格
     final_price = final_spread + meanprice
