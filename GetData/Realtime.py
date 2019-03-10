@@ -85,19 +85,19 @@ def Run(coinParam):
         result = {'LastPrice': _lastPrice, 'LastVol': _lastVol, 'BasePrice': _newBase, 'BaseVol': _newBaseVol}
     else:
         # 计算涨跌幅度
-        print('*****')
+        #print('*****')
         _ratioP = (_newBase - _basePrice) / _basePrice
         _ratioV = (_newBaseVol - _baseVol) / _baseVol
         #print('2* %s%s' % (_ratioP, _ratioV))
-        print('base_ratio=%s' % (_ratioP * 100))
+        #print('base_ratio=%s' % (_ratioP * 100))
 
         # 根据价格范围 调整价格涨跌
         # 使用反正切函数控制
         NewPrice = _lastPrice * (1 + _ratioP)
-        print('price=%s' % (NewPrice))
+        #print('price=%s' % (NewPrice))
 
-        NewPrice = get_final_price_atan(_priceUp, _priceLow, NewPrice)
-        print('after_price=%s' % (NewPrice))
+        #NewPrice = get_final_price_atan(_priceUp, _priceLow, NewPrice)
+        #print('after_price=%s' % (NewPrice))
 
         NewVol = _lastVol * (1 + _ratioV)
 
