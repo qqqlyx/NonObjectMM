@@ -14,13 +14,16 @@ def do_order(code, price, vol, direction):
 
         # 打印log
         if re['msg'] != 'suc':
+            pass
             print('%s CODE=%s  D=%s  P=%s  V=%s' % (re, code, direction, price, vol))
             result = '000'
         else:
             # log.info(re)
+            pass
             result = re['data']['order_id']
 
     except Exception as e:
+        pass
         print('---->except<do_trading>: ' + str(code), e)
 
     return result
@@ -36,6 +39,7 @@ def cancel(code, all_order):
             re = json.loads(r)  # 使用eval会报错，因次用了json方法转换str -> dict
             # 打印log
             if re['msg'] != 'suc':
+                pass
                 print('(cancel_all): code: ' + code)
                 print(re)
             # else:
