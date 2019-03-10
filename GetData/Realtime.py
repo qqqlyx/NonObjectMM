@@ -81,6 +81,7 @@ def Run(coinParam):
     '''
     if _basePrice <= 0 or _baseVol <= 0:
         # 返回结果
+        print('*')
         result = {'LastPrice': _lastPrice, 'LastVol': _lastVol, 'BasePrice': _newBase, 'BaseVol': _newBaseVol}
     else:
         # 计算涨跌幅度
