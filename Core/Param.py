@@ -25,9 +25,11 @@ def Run(_c, _e):
                 w.write('LastPrice=0\nLastVol=0\nBasePrice=0\nBaseVol=0')
             f = open(path)
             data = f.read().split('\n')
+
+            # 构建参数
+            PARMA = {'Basic':{}, 'Kline':{}, 'RealTime':{}, 'Trading':{}}
+
             # Basic信息
-            #PARMA['Coin'] = _c
-            #PARMA['Envo'] = _e
             PARMA['Basic']['Coin'] = _c
             PARMA['Basic']['Envo'] = _e
             t = float(df.loc[i, 'PricePrecision'])
