@@ -31,7 +31,7 @@ CoinPARAM = Core.Param.Run(COIN, ENVO)
 
 # 设置交易环境
 from Api.UniDax import UniDaxServices as uds
-uds.Set(CoinPARAM['Envo'])
+uds.Set(CoinPARAM['Basic']['Envo'])
 
 # 导入数据模块
 from RealTime import Huobi
