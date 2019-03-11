@@ -6,6 +6,8 @@
 输入：定价范围
 输出：价格和数量的涨跌幅
 '''
+import sys
+sys.path.append('D:\\Robin\\UniDAX_NonObjectMM')
 
 from Api.Huobi import HuobiServices as hbs
 from Api.UniDax import UniDaxServices as uds
