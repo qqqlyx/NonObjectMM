@@ -42,13 +42,13 @@ def Run(coinParam):
     :param coinParam: 统一参数
     :return:
     '''
-    _targetBasket = coinParam['Basket']
+    _targetBasket = coinParam['RealTime']['Basket']
     _lastPrice = coinParam['Trading']['LastPrice']
     _lastVol = coinParam['Trading']['LastVol']
     _basePrice = coinParam['Trading']['BasePrice']
     _baseVol = coinParam['Trading']['BaseVol']
-    _priceUp = coinParam['Info']['PriceUp']
-    _priceLow = coinParam['Info']['PriceLow']
+    _priceUp = coinParam['RealTime']['PriceUp']
+    _priceLow = coinParam['RealTime']['PriceLow']
 
     #print('1* %s%s%s%s' %(_lastPrice,_lastVol,_basePrice,_baseVol))
 

@@ -9,9 +9,11 @@ def Run(coinParam):
     # 格式化一下
     _tp = float(coinParam['Trading']['LastPrice'])
     _tv = float(coinParam['Trading']['LastVol'])
-    _pt = float(coinParam['Info']['PriceTick'])
-    _vt = float(coinParam['Info']['VolumeTick'])
-    _envo = coinParam['Envo']
+    _pt = float(coinParam['Basic']['PriceTick'])
+    _vt = float(coinParam['Basic']['VolumeTick'])
+    _envo = coinParam['Basic']['Envo']
+    _pp = int(coinParam['Basic']['PricePrecision'])
+    _vp = int(coinParam['Basic']['VolumePrecision'])
 
     # 自成交报单
     # 加个随机波动吧
@@ -73,8 +75,6 @@ def Run(coinParam):
     for order in OrdeList:
         _price = float(order['price'])
         _vol = float(order['vol'])
-        _pp = int(coinParam['Info']['PricePrecision'])
-        _vp = int(coinParam['Info']['VolumePrecision'])
 
         _new_price = round(_price, _pp)
         _new_vol = round(_vol, _vp)

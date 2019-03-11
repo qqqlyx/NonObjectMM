@@ -34,16 +34,16 @@ from Api.UniDax import UniDaxServices as uds
 uds.Set(CoinPARAM['Envo'])
 
 # 导入数据模块
-from GetData import Realtime
-from GetData import KLine
+from RealTime import Huobi
+from KLine import GetData
+
 if DATA == 'RealTime':
-    DataFunction = Realtime
+    DataFunction = Huobi
 elif DATA == 'Kline':
-    DataFunction = KLine
+    DataFunction = GetData
 
 
 # 导入其他模块
-from pprint import *
 import time
 
 # 定时参数
