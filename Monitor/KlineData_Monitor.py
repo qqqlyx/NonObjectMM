@@ -11,7 +11,7 @@ import subprocess
 
 
 
-path = 'D:\\Robin\\UniDAX_NonObjectMM\\KLine\\PeriodStart.py'
+path = 'D:\\Robin\\UniDAX_NonObjectMM\\Kline\\PeriodStart.py'
 
 
 class run_action():

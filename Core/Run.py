@@ -34,13 +34,13 @@ from Api.UniDax import UniDaxServices as uds
 uds.Set(CoinPARAM['Basic']['Envo'])
 
 # 导入数据模块
-from RealTime import Huobi
-from KLine import GetData
+import RealTime
+import Kline
 
 if DATA == 'RealTime':
-    DataFunction = Huobi
+    DataFunction = RealTime.Huobi
 elif DATA == 'Kline':
-    DataFunction = GetData
+    DataFunction = Kline.GetData
 
 
 # 导入其他模块
@@ -89,8 +89,8 @@ while True:
         write_param_stamp = time.time()
 
         # 记录交易参数
-        _e = CoinPARAM['Envo']
-        _c = CoinPARAM['Coin']
+        _e = CoinPARAM['Basic']['Envo']
+        _c = CoinPARAM['Basic']['Coin']
         path = 'D:\\Robin\\UniDAX_NonObjectMM\\Setting\\%s\\%s.txt' % (_e, _c)
 
         lp = str(CoinPARAM['Trading']['LastPrice'])
