@@ -12,19 +12,19 @@ import time
 import datetime
 import math
 
-coinParam = ''
-_each_kline_day = coinParam['']
-
-path = 'D:\\Robin\\UniDAX_NonObjectMM\\KLine\\'
-
-
-#def Run(coinParam):
-'''
-读取Excel，并根据指定时间进行处理
-'''
-df = pd.read_excel(path)
-
-pprint(df)
-
-
-#Run()
+# coinParam = ''
+# _each_kline_day = coinParam['']
+#
+# path = 'D:\\Robin\\UniDAX_NonObjectMM\\KLine\\'
+#
+#
+# #def Run(coinParam):
+# '''
+# 读取Excel，并根据指定时间进行处理
+# '''
+# df = pd.read_excel(path)
+#
+# pprint(df)
+#
+#
+# #Run()
