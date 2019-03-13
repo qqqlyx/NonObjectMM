@@ -27,15 +27,16 @@ mm_fre = 15 # 交易周期 秒
 write_fre = 10 # 交易数据备份周期 分钟
 
 # 读取参数
-import Core
-CoinPARAM = Core.Param.Run(COIN, ENVO)
+import RealTime
+CoinPARAM = RealTime.Param.Run(COIN, ENVO)
 
 # 设置交易环境
 from Api.UniDax import UniDaxServices as uds
 uds.Set(CoinPARAM['Basic']['Envo'])
 
 # 导入数据模块
-from RealTime import Huobi as RealTime_Huobi
+from RealTime import get_Quota as RealTime_Huobi
+
 #from Kline import
 
 if DATA == 'RealTime':
@@ -74,7 +75,7 @@ while True:
     time_tick = int(time.time())
 
     # 生成报单信息
-    Order_List = Core.get_OrderList.Run(CoinPARAM)
+    Order_List = RealTime.get_OrderList.Run(CoinPARAM)
 
     ts = int(time.time() - time_tick)
     print('* Order_List 时间 = %s ' % (ts))
@@ -84,7 +85,7 @@ while True:
     '''
     time_tick = int(time.time())
     # 先记录所有单号，接着进行报单，最后再撤上一批报单
-    all_order = Core.Trading.get_all_order(COIN)
+    all_order = RealTime.Trading.get_all_order(COIN)
     ts = int(time.time() - time_tick)
     print('* all_order 时间 = %s ' % (ts))
 
@@ -96,14 +97,14 @@ while True:
         v = order['vol']
         c = COIN
         d = order['dict']
-        Core.Trading.do_order(code=c, price=p, vol=v, direction=d)
+        RealTime.Trading.do_order(code=c, price=p, vol=v, direction=d)
     ts = int(time.time() - time_tick)
     print('* 报单 时间 = %s ' % (ts))
 
 
     # 撤上一批次报单
     time_tick = int(time.time())
-    Core.Trading.cancel(COIN, all_order)
+    RealTime.Trading.cancel(COIN, all_order)
     ts = int(time.time() - time_tick)
     print('* 撤单 时间 = %s ' % (ts))
 

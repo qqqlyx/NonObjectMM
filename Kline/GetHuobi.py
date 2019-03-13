@@ -4,7 +4,7 @@
 '''
 
 from Api.Huobi import HuobiServices as hbs
-from Core import Param
+from RealTime import Param
 import pandas as pd
 
 CoinList = set(Param.COIN['Coin'])

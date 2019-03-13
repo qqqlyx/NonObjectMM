@@ -98,9 +98,12 @@ def Run(coinParam):
 
         #NewPrice = get_final_price_atan(_priceUp, _priceLow, NewPrice)
 
-        print(
-            '_basePrice=%s, _newBase=%s, _lastPrice=%s, after_price=%s' % (_basePrice, _newBase, _lastPrice, NewPrice))
+        # print(
+        #     '_basePrice=%s, _newBase=%s, _lastPrice=%s, after_price=%s' % (_basePrice, _newBase, _lastPrice, NewPrice))
 
+        br = round(_newBase / _basePrice,4)
+        pr = round(NewPrice / _lastPrice, 4)
+        print('baseRatio = %s, priceRatio = %s' %(br, pr))
         NewVol = _lastVol * (1 + _ratioV)
 
 
