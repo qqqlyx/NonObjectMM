@@ -4,8 +4,12 @@
 2、深度报单
 '''
 import random
+import time
 
 def Run(coinParam):
+
+    time1 = time.time()
+
     # 格式化一下
     _tp = float(coinParam['Trading']['LastPrice'])
     _tv = float(coinParam['Trading']['LastVol'])
@@ -91,5 +95,8 @@ def Run(coinParam):
         else:
             order['vol'] = _new_vol
 
+    ts = time.time() - time1
+    ts = int(ts)
+    print('* get_order Time = %s ' %(str(ts)))
 
     return OrdeList
