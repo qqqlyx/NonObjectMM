@@ -14,6 +14,7 @@
 
 import sys
 sys.path.append('D:\\Robin\\UniDAX_NonObjectMM')
+
 _input_param = str(sys.argv[1]).split(',')
 COIN = _input_param[0]
 ENVO = _input_param[1]
@@ -34,13 +35,13 @@ from Api.UniDax import UniDaxServices as uds
 uds.Set(CoinPARAM['Basic']['Envo'])
 
 # 导入数据模块
-import RealTime
-import Kline
+from RealTime import Huobi as RealTime_Huobi
+#from Kline import
 
 if DATA == 'RealTime':
-    DataFunction = RealTime.Huobi
-elif DATA == 'Kline':
-    DataFunction = Kline.GetData
+    DataFunction = RealTime_Huobi
+# elif DATA == 'Kline':
+#     DataFunction = Kline.GetData
 
 
 # 导入其他模块

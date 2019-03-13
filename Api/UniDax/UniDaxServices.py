@@ -38,8 +38,8 @@ def getUrlContent(tem):
     requests.packages.urllib3.disable_warnings()
     url = unidax_url + tem
     # url = 'www.unidax.com/exchange-open-api/open/api/create_order' + tem
-    #print(url)
-    r = requests.get(url,  verify=False)
+    print(url)
+    r = requests.get(url,  verify=False, timeout=10)
     return r.json()
 
 
@@ -228,14 +228,14 @@ def account():
 
 
 # 获取全部成交记录
-def all_trade(symbol, pageSize='10000', page='1'):
+def all_trade(symbol, pageSize='10000', page='1',startTime = '0', endTime = '0'):
     url = '/open/api/all_trade?'
 
     api_key = APIKEY
     secret = SECRET
     time = getTime()
-
     dic = {'api_key': api_key, 'time': time, 'symbol': symbol, 'pageSize': str(pageSize), 'page': str(page)}
+
     sort = sorted(dic.items(), key=lambda item: item[0])
     string = ''
     for tem in sort:
@@ -243,7 +243,39 @@ def all_trade(symbol, pageSize='10000', page='1'):
         url += tem[0] + '=' + tem[1] + '&'
 
     sign = getMD5(string + secret)
+
+    if startTime != '0':
+        url += 'startTime=%s&' %(startTime)
+    if endTime != '0':
+        url += 'endTime=%s&' % (endTime)
+
     url += 'sign=' + sign
+    #print(url)
     return getUrlContent(url)
 
+# 获取全部成交记录
+def all_trade_data(symbol, pageSize='10000', page='1',startTime = '0', endTime = '0'):
+    url = '/open/api/all_trade_data?'
+
+    api_key = APIKEY
+    secret = SECRET
+    time = getTime()
+    dic = {'api_key': api_key, 'time': time, 'symbol': symbol, 'pageSize': str(pageSize), 'page': str(page)}
+
+    sort = sorted(dic.items(), key=lambda item: item[0])
+    string = ''
+    for tem in sort:
+        string += tem[0] + tem[1]
+        url += tem[0] + '=' + tem[1] + '&'
+
+    sign = getMD5(string + secret)
+
+    if startTime != '0':
+        url += 'startTime=%s&' %(startTime)
+    if endTime != '0':
+        url += 'endTime=%s&' % (endTime)
+
+    url += 'sign=' + sign
+    #print(url)
+    return getUrlContent(url)
 
