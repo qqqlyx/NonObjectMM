@@ -38,7 +38,7 @@ def getUrlContent(tem):
     requests.packages.urllib3.disable_warnings()
     url = unidax_url + tem
     # url = 'www.unidax.com/exchange-open-api/open/api/create_order' + tem
-    print(url)
+
     r = requests.get(url,  verify=False, timeout=10)
     return r.json()
 
