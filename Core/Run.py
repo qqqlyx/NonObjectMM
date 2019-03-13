@@ -82,17 +82,30 @@ while True:
     '''
     交易下单
     '''
+    time_tick = int(time.time())
     # 先记录所有单号，接着进行报单，最后再撤上一批报单
     all_order = Core.Trading.get_all_order(COIN)
+    ts = int(time.time() - time_tick)
+    print('* all_order 时间 = %s ' % (ts))
+
+
     # 进行报单
+    time_tick = int(time.time())
     for order in Order_List:
         p = order['price']
         v = order['vol']
         c = COIN
         d = order['dict']
         Core.Trading.do_order(code=c, price=p, vol=v, direction=d)
+    ts = int(time.time() - time_tick)
+    print('* 报单 时间 = %s ' % (ts))
+
+
     # 撤上一批次报单
+    time_tick = int(time.time())
     Core.Trading.cancel(COIN, all_order)
+    ts = int(time.time() - time_tick)
+    print('* 撤单 时间 = %s ' % (ts))
 
 
     '''
