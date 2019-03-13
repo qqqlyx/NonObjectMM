@@ -33,14 +33,14 @@ def Run(coinParam):
     maxPrice = _tp
     minPrice = _tp
 
-    # 前10报单 较密集
-    for i in range(10):
+    # 前5报单 较密集
+    for i in range(5):
         # ask order
-        r1 = random.randint(1, 3) # 价格随机数，每两报单相隔 1-3跳
-        r2 = random.uniform(0.2, 2) # 数量随机数
+        r1 = random.randint(1, 3)  # 价格随机数，每两报单相隔 1-3跳
+        r2 = random.uniform(0.2, 2)  # 数量随机数
         ap = maxPrice + r1 * _pt
         av = (OrdeList[0]['vol'] + OrdeList[-1]['vol']) * r2
-        temp = {'price': ap, 'vol': av, 'dict': 'SELL', 'envo':_envo}
+        temp = {'price': ap, 'vol': av, 'dict': 'SELL', 'envo': _envo}
         OrdeList.append(temp)
         maxPrice = ap
 
@@ -49,29 +49,49 @@ def Run(coinParam):
         r2 = random.uniform(0.2, 2)  # 数量随机数
         ap = minPrice - r1 * _pt
         av = (OrdeList[0]['vol'] + OrdeList[-1]['vol']) * r2
-        temp = {'price': ap, 'vol': av, 'dict': 'BUY', 'envo':_envo}
+        temp = {'price': ap, 'vol': av, 'dict': 'BUY', 'envo': _envo}
         OrdeList.append(temp)
         minPrice = ap
 
-    # 后5报单，较松散
-    for i in range(5):
-        # ask order
-        r1 = random.randint(3, 10)  # 价格随机数，每两报单相隔 1-3跳
-        r2 = random.uniform(0.2, 1.5)  # 数量随机数
-        ap = maxPrice + r1 * _pt
-        av = (OrdeList[0]['vol'] + OrdeList[-1]['vol']) * r2
-        temp = {'price': ap, 'vol': av, 'dict': 'SELL', 'envo':_envo}
-        OrdeList.append(temp)
-        maxPrice = ap
-
-        # bid order
-        r1 = random.randint(3, 10) # 价格随机数，每两报单相隔 1-3跳
-        r2 = random.uniform(0.2, 1.5)  # 数量随机数
-        ap = minPrice - r1 * _pt
-        av = (OrdeList[0]['vol'] + OrdeList[-1]['vol']) * r2
-        temp = {'price': ap, 'vol': av, 'dict': 'BUY', 'envo':_envo}
-        OrdeList.append(temp)
-        minPrice = ap
+    # # 前10报单 较密集
+    # for i in range(10):
+    #     # ask order
+    #     r1 = random.randint(1, 3) # 价格随机数，每两报单相隔 1-3跳
+    #     r2 = random.uniform(0.2, 2) # 数量随机数
+    #     ap = maxPrice + r1 * _pt
+    #     av = (OrdeList[0]['vol'] + OrdeList[-1]['vol']) * r2
+    #     temp = {'price': ap, 'vol': av, 'dict': 'SELL', 'envo':_envo}
+    #     OrdeList.append(temp)
+    #     maxPrice = ap
+    #
+    #     # bid order
+    #     r1 = random.randint(1, 3)  # 价格随机数，每两报单相隔 1-3跳
+    #     r2 = random.uniform(0.2, 2)  # 数量随机数
+    #     ap = minPrice - r1 * _pt
+    #     av = (OrdeList[0]['vol'] + OrdeList[-1]['vol']) * r2
+    #     temp = {'price': ap, 'vol': av, 'dict': 'BUY', 'envo':_envo}
+    #     OrdeList.append(temp)
+    #     minPrice = ap
+    #
+    # # 后5报单，较松散
+    # for i in range(5):
+    #     # ask order
+    #     r1 = random.randint(3, 10)  # 价格随机数，每两报单相隔 1-3跳
+    #     r2 = random.uniform(0.2, 1.5)  # 数量随机数
+    #     ap = maxPrice + r1 * _pt
+    #     av = (OrdeList[0]['vol'] + OrdeList[-1]['vol']) * r2
+    #     temp = {'price': ap, 'vol': av, 'dict': 'SELL', 'envo':_envo}
+    #     OrdeList.append(temp)
+    #     maxPrice = ap
+    #
+    #     # bid order
+    #     r1 = random.randint(3, 10) # 价格随机数，每两报单相隔 1-3跳
+    #     r2 = random.uniform(0.2, 1.5)  # 数量随机数
+    #     ap = minPrice - r1 * _pt
+    #     av = (OrdeList[0]['vol'] + OrdeList[-1]['vol']) * r2
+    #     temp = {'price': ap, 'vol': av, 'dict': 'BUY', 'envo':_envo}
+    #     OrdeList.append(temp)
+    #     minPrice = ap
 
     '''
     对价格做精度处理
