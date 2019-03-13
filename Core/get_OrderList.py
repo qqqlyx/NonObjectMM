@@ -95,8 +95,4 @@ def Run(coinParam):
         else:
             order['vol'] = _new_vol
 
-    ts = time.time() - time1
-    ts = int(ts)
-    print('* get_order Time = %s ' %(str(ts)))
-
     return OrdeList

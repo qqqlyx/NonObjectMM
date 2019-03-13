@@ -53,6 +53,9 @@ mm_stamp = time.time()
 
 #pprint(Tokens.UniDAX_unidax_url)
 
+#
+time_tick = 0
+
 # 开始报单循环
 while True:
     '''
@@ -61,11 +64,20 @@ while True:
     # 变量
     order_list = []
 
+    time_tick = int(time.time())
+
     # 计算下单价格
     CoinPARAM['Trading'] = DataFunction.Run(CoinPARAM)
 
+    ts = int(time.time() - time_tick)
+    print('* 计算价格 时间 = %s ' %(ts))
+    time_tick = int(time.time())
+
     # 生成报单信息
     Order_List = Core.get_OrderList.Run(CoinPARAM)
+
+    ts = int(time.time() - time_tick)
+    print('* Order_List 时间 = %s ' % (ts))
 
     '''
     交易下单
