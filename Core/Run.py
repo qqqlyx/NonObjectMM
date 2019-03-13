@@ -109,6 +109,7 @@ while True:
     '''
     trading_time = time.time() - mm_stamp # 交易流程运行时间
     mm_stamp = time.time() # 赋值
+    print('* 运行时间=%s' % (trading_time))
     sleep_time = mm_fre - trading_time # 计算睡眠时间
     if sleep_time > 0:
         time.sleep(mm_fre)
