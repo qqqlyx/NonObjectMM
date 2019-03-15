@@ -16,15 +16,16 @@ _date = '2019-03-15'
 _envo = 'Test'
 
 # 导入参数
-from Kline import Param as Kline_Param
-CoinPARAM = Kline_Param.Run(_code, _envo)
+import Kline
+# from Kline import Param as Kline_Param
+CoinPARAM = Kline.Param.Run(_code, _envo)
 
 # 设置交易环境
 from Api.UniDax import UniDaxServices as uds
 uds.Set(CoinPARAM['Basic']['Envo'])
 
 # 设置交易接口
-from Kline import Trading as Kline_Trading
+# from Kline import Trading as Kline_Trading
 
 # 内部变量
 struct_time = time.strptime(_date, "%Y-%m-%d")
@@ -50,7 +51,7 @@ df = df.astype(float)
 '''
 开始前撤所有挂单
 '''
-Kline_Trading.cancel_all(_code)
+Kline.Trading.cancel_all(_code)
 
 
 '''
@@ -123,12 +124,12 @@ while row_count < row_max:
             '''
             for ask in AskOrders:
                 if Price > ask['price']:
-                    Kline_Trading.cancel(_code, ask['id'])
+                    Kline.Trading.cancel(_code, ask['id'])
                     AskOrders.remove(ask)
 
             for bid in BidOrders:
                 if Price < bid['price']:
-                    Kline_Trading.cancel(_code, bid['id'])
+                    Kline.Trading.cancel(_code, bid['id'])
                     BidOrders.remove(bid)
 
             # 再随机撤一个单子
@@ -143,7 +144,7 @@ while row_count < row_max:
                     id = BidOrders[r-askCount]['id']
                     BidOrders.remove(BidOrders[r-askCount])
 
-                Kline_Trading.cancel(_code, id)
+                Kline.Trading.cancel(_code, id)
 
             '''
             报新单
@@ -153,7 +154,7 @@ while row_count < row_max:
                 v = order['vol']
                 c = _code
                 d = order['dict']
-                re = Kline_Trading.do_order(code=c, price=p, vol=v, direction=d)
+                re = Kline.Trading.do_order(code=c, price=p, vol=v, direction=d)
                 #print(re)
 
                 if re != 'Failed':
