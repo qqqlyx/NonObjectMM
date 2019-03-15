@@ -29,9 +29,9 @@ class run_action():
 
                 now_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
                 if self.poll is None:
-                    print(now_time + '  ' + code + ": NORMAL")
+                    print(now_time + '  ' + ": NORMAL")
                 else:
-                    print(now_time + '  ' + code + ": STOP,TRY RE-OPEN")
+                    print(now_time + '  ' + ": STOP,TRY RE-OPEN")
                     self.run()
         except Exception as e:
             print('---->except<mm_action>', e)
