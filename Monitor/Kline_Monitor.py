@@ -13,7 +13,7 @@ path = 'D:\\Robin\\UniDAX_NonObjectMM\\Kline\\RunDayKline.py'
 
 
 class run_action():
-    def __init__(self, code, envo, data, cmd):
+    def __init__(self, cmd):
         self.cmd = cmd
         self.p = None
         self.begin_time = datetime.datetime.now()
