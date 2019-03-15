@@ -3,6 +3,8 @@
 1、与K线数据相同的成交价
 2、配合生成深度报单
 '''
+import sys
+sys.path.append('D:\\Robin\\UniDAX_NonObjectMM')
 
 import time
 import pandas as pd

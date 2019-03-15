@@ -29,7 +29,7 @@ write_fre = 10 # 交易数据备份周期 分钟
 # 读取参数
 import RealTime
 from Core import Trading as Core_Trading
-CoinPARAM = Core_Param.Param.Run(COIN, ENVO)
+CoinPARAM = RealTime.Param.Run(COIN, ENVO)
 
 # 设置交易环境
 from Api.UniDax import UniDaxServices as uds
