@@ -3,7 +3,7 @@ import json
 from Api.UniDax import UniDaxServices as uds
 
 
-# 实际下单，返回订单id
+# 实际下单，返回信息
 def do_order(code, price, vol, direction):
     result = '000'
 
@@ -19,7 +19,7 @@ def do_order(code, price, vol, direction):
 
         else:
             # log.info(re)
-            result = re['data']['order_id']
+            result = re
 
     except Exception as e:
         pass

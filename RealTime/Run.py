@@ -28,7 +28,8 @@ write_fre = 10 # 交易数据备份周期 分钟
 
 # 读取参数
 import RealTime
-CoinPARAM = RealTime.Param.Run(COIN, ENVO)
+from Core import Trading as Core_Trading
+CoinPARAM = Core_Param.Param.Run(COIN, ENVO)
 
 # 设置交易环境
 from Api.UniDax import UniDaxServices as uds
@@ -85,7 +86,7 @@ while True:
     '''
     time_tick = int(time.time())
     # 先记录所有单号，接着进行报单，最后再撤上一批报单
-    all_order = RealTime.Trading.get_all_order(COIN)
+    all_order = Core_Trading.get_all_order(COIN)
     ts = int(time.time() - time_tick)
     print('* all_order 时间 = %s ' % (ts))
 
@@ -97,14 +98,14 @@ while True:
         v = order['vol']
         c = COIN
         d = order['dict']
-        RealTime.Trading.do_order(code=c, price=p, vol=v, direction=d)
+        Core_Trading.do_order(code=c, price=p, vol=v, direction=d)
     ts = int(time.time() - time_tick)
     print('* 报单 时间 = %s ' % (ts))
 
 
     # 撤上一批次报单
     time_tick = int(time.time())
-    RealTime.Trading.cancel(COIN, all_order)
+    Core_Trading.cancel(COIN, all_order)
     ts = int(time.time() - time_tick)
     print('* 撤单 时间 = %s ' % (ts))
 

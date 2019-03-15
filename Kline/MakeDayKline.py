@@ -25,10 +25,10 @@ import random
 # _vol = sys.argv[5]  # 初始定量
 
 # 参数
-_code = 'btcusdt'
+_code = 'ltcusdt'
 _kline = 'TestKline\\kline_1.xlsx'
-_date = '2019-03-13'
-_begin_price = 3000
+_date = '2019-03-15'
+_begin_price = 15
 _begin_vol = 1
 
 '''
@@ -68,11 +68,13 @@ volRatio = _begin_vol / vol
 '''
 DayPrice = []
 DayTime = []
+DayVol = []
 
 for i in range(df.shape[0]):
     ClosePrice = float(df.iloc[i, :]['close'])
     High = float(df.iloc[i, :]['high'])
     Low = float(df.iloc[i, :]['low'])
+    Vol = float(df.iloc[i,:]['amount'])
 
     #
     # 生成报单数量和价格
@@ -80,41 +82,46 @@ for i in range(df.shape[0]):
     OrderList = []
 
     # 做0-3个成交，价格处于最高和最低中间
-    r = random.randint(0, 3)
-    for j in range(r):
-        p = random.uniform(Low, High)
-        OrderList.append(p)
+    # 不做了，随机成交情况由单独程序控制
+    # r = random.randint(0, 3)
+    # for j in range(r):
+    #     p = random.uniform(Low, High)
+    #     OrderList.append(p)
 
     # 把最高价和最低价插入，并把列表顺序打乱
-    OrderList.append(High)
-    OrderList.append(Low)
+    OrderList.append(High * priceRatio)
+    OrderList.append(Low* priceRatio)
     random.shuffle(OrderList)
 
     # 最后插入收盘价
-    OrderList.append(ClosePrice)
+    OrderList.append(ClosePrice * priceRatio)
 
     #
     # 成交量
     #
     OrderVol = []
+    count = len(OrderList)
 
-    for j in range(r):
-        p = random.uniform(Low, High)
-        OrderList.append(p)
+    meanVol = Vol / count
+    for j in range(count):
+        min = j * meanVol
+        max = (j + 1) * meanVol
+        vol = random.uniform(min, max)
+        final = vol * volRatio
+        OrderVol.append(final)
 
 
     #
     # 生成报单时间，每个成交之间，至少相隔5秒
     #
     OrderTime = []
-    count = len(OrderList)
 
     meanTime = 60 / count
     for j in range(count):
         min = j * meanTime
         max = (j + 1) * meanTime
-        time = random.uniform(min, max)
-        final = int(runTime + time)
+        rtime = random.uniform(min, max)
+        final = int(runTime + rtime)
         OrderTime.append(final)
 
     # 结束本分钟计算，进1分钟
@@ -125,12 +132,31 @@ for i in range(df.shape[0]):
     #
     DayPrice += OrderList
     DayTime += OrderTime
+    DayVol += OrderVol
 
 '''
 写Excel
 '''
-dict = {'TimeStamp':DayTime, 'ClosePrice':DayPrice}
+
+# 加一点随机
+
+for j in range(len(DayPrice)):
+    r = random.uniform(0.9999, 1.0001)
+    p = DayPrice[j]
+    DayPrice[j] = p * r
+
+
+dict = {'TimeStamp':DayTime, 'ClosePrice':DayPrice, 'Vol':DayVol}
 newDF = pd.DataFrame(dict)
 
-pprint(newDF)
+date = time.localtime(BeginStamp)
+
+path = 'D:\\Robin\\UniDAX_NonObjectMM\\Kline\\Trading\\'
+path += '%s%s%s' %(date.tm_year, date.tm_mon,date.tm_mday)
+
+if not os.path.exists(path):
+      os.makedirs(path)
+
+path += '\\%s.xlsx' %(_code)
+newDF.to_excel(path)
 
