@@ -14,14 +14,19 @@ from Core import Trading as Core_Trading
 import sys
 sys.path.append('D:\\Robin\\UniDAX_NonObjectMM')
 
-price = 149.9
+price = 152.41
 tick = 0.01
 direction = 1
+uds.Set('Test')
+
+old_order = Core_Trading.get_all_order('ethusdt')
+Core_Trading.cancel('ethusdt', old_order)
 
 while True:
 
-    for i in range(random.randint(10,5000)):
-        uds.Set('Test')
+    direction *= -1
+
+    for i in range(random.randint(10,50)):
         r = random.randint(1,5)
         price += r * tick * direction
         vol = random.uniform(0.001, 10.000)

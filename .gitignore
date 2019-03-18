@@ -3,3 +3,6 @@
 *.xlsx
 *.pyc
 *.py___jb_tmp___
+*.txt
+*.xml
+*.bat
